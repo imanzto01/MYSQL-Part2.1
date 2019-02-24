@@ -1,0 +1,196 @@
+Microsoft Windows [Version 10.0.17134.112]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\Owner>cd..
+
+C:\Users>cd..
+
+C:\>cd xampp
+
+C:\xampp>cd mysql
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 3
+Server version: 10.1.37-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| latihan01          |
+| mahasiswa          |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+MariaDB [(none)]> use mahasiswa;
+Database changed
+MariaDB [mahasiswa]> create table biodata01
+    -> (NIM char (10) primary key,
+    -> NAMA varchar (25) not null,
+    -> ALAMAT varchar (20) not null,
+    -> KOTA varchar (20) not null,
+    -> KODE_POS INT (5) not null,
+    -> JENIS_KELAMIN varchar (10) not null,
+    -> NO_HP varchar (13) not null,
+    -> TANGGAL_LAHIR varchar (12) not null,
+    -> KODE_DOSEN INT (12) not null);
+Query OK, 0 rows affected (0.16 sec)
+
+MariaDB [mahasiswa]> desc biodata01;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| NIM           | char(10)    | NO   | PRI | NULL    |       |
+| NAMA          | varchar(25) | NO   |     | NULL    |       |
+| ALAMAT        | varchar(20) | NO   |     | NULL    |       |
+| KOTA          | varchar(20) | NO   |     | NULL    |       |
+| KODE_POS      | int(5)      | NO   |     | NULL    |       |
+| JENIS_KELAMIN | varchar(10) | NO   |     | NULL    |       |
+| NO_HP         | varchar(13) | NO   |     | NULL    |       |
+| TANGGAL_LAHIR | varchar(12) | NO   |     | NULL    |       |
+| KODE_DOSEN    | int(12)     | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+MariaDB [mahasiswa]> insert into biodata01
+    -> (NIM, NAMA, ALAMAT, KOTA, KODE_POS, JENIS_KELAMIN, NO_HP, TANGGAL_LAHIR, KODE_DOSEN)
+    -> values
+    -> ("11223344", "Ari Santoso", "Jl Kolonel Sugiono", "Bekasi", "17111", "Laki-Laki", "089766545323", "1998-10-12", "1101"),
+    -> ("11223345", "Ario Talib", "Jl Raya Cibarusah", "Cikarang", "17530", "Laki-Laki", "087887677889", "1999-11-16", "1102"),
+    -> ("11223346", "Dina Marlina", "Jl Raya Klari", "Karawang", "41313", "Perempuan", "081098785543", "1997-12-01", "1103"),
+    -> ("11223347", "Lisa Ayu", "Jl Stasiun 01", "Bekasi", "17111", "Perempuan", "089887676545", "1997-01-02", "1104"),
+    -> ("11223348", "Tiara Wahidah", "Jl Bojong Koneng", "Bekasi", "17111", "Perempuan", "081789654777", "1980-02-05", "1105"),
+    -> ("11223349", "Anton Sinaga", "Jl Tegal Gede", "Cikarang", "17560", "Laki-Laki", "082345654555", "1988-03-10", "1106");
+Query OK, 6 rows affected (0.09 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [mahasiswa]> select * from biodata01;
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+| NIM      | NAMA          | ALAMAT             | KOTA     | KODE_POS | JENIS_KELAMIN | NO_HP        | TANGGAL_LAHIR | KODE_DOSEN |
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+|          |               |                    |          |        0 |               |              |               |          0 |
+| 11223344 | Ari Santoso   | Jl Kolonel Sugiono | Bekasi   |    17111 | Laki-Laki     | 089766545323 | 1998-10-12    |       1101 |
+| 11223345 | Ario Talib    | Jl Raya Cibarusah  | Cikarang |    17530 | Laki-Laki     | 087887677889 | 1999-11-16    |       1102 |
+| 11223346 | Dina Marlina  | Jl Raya Klari      | Karawang |    41313 | Perempuan     | 081098785543 | 1997-12-01    |       1103 |
+| 11223347 | Lisa Ayu      | Jl Stasiun 01      | Bekasi   |    17111 | Perempuan     | 089887676545 | 1997-01-02    |       1104 |
+| 11223348 | Tiara Wahidah | Jl Bojong Koneng   | Bekasi   |    17111 | Perempuan     | 081789654777 | 1980-02-05    |       1105 |
+| 11223349 | Anton Sinaga  | Jl Tegal Gede      | Cikarang |    17560 | Laki-Laki     | 082345654555 | 1988-03-10    |       1106 |
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+7 rows in set (0.00 sec)
+
+MariaDB [mahasiswa]> delete from biodata01 where KODE_POS="0";
+Query OK, 1 row affected (0.85 sec)
+
+MariaDB [mahasiswa]> select * from biodata01;
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+| NIM      | NAMA          | ALAMAT             | KOTA     | KODE_POS | JENIS_KELAMIN | NO_HP        | TANGGAL_LAHIR | KODE_DOSEN |
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+| 11223344 | Ari Santoso   | Jl Kolonel Sugiono | Bekasi   |    17111 | Laki-Laki     | 089766545323 | 1998-10-12    |       1101 |
+| 11223345 | Ario Talib    | Jl Raya Cibarusah  | Cikarang |    17530 | Laki-Laki     | 087887677889 | 1999-11-16    |       1102 |
+| 11223346 | Dina Marlina  | Jl Raya Klari      | Karawang |    41313 | Perempuan     | 081098785543 | 1997-12-01    |       1103 |
+| 11223347 | Lisa Ayu      | Jl Stasiun 01      | Bekasi   |    17111 | Perempuan     | 089887676545 | 1997-01-02    |       1104 |
+| 11223348 | Tiara Wahidah | Jl Bojong Koneng   | Bekasi   |    17111 | Perempuan     | 081789654777 | 1980-02-05    |       1105 |
+| 11223349 | Anton Sinaga  | Jl Tegal Gede      | Cikarang |    17560 | Laki-Laki     | 082345654555 | 1988-03-10    |       1106 |
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+6 rows in set (0.00 sec)
+
+MariaDB [mahasiswa]> update biodata01
+    -> set TANGGAL_LAHIR="1979-08-31"
+    -> where NIM="11223344";
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mahasiswa]> select * from biodata01 where NIM="11223344";
++----------+-------------+--------------------+--------+----------+---------------+--------------+---------------+------------+
+| NIM      | NAMA        | ALAMAT             | KOTA   | KODE_POS | JENIS_KELAMIN | NO_HP        | TANGGAL_LAHIR | KODE_DOSEN |
++----------+-------------+--------------------+--------+----------+---------------+--------------+---------------+------------+
+| 11223344 | Ari Santoso | Jl Kolonel Sugiono | Bekasi |    17111 | Laki-Laki     | 089766545323 | 1979-08-31    |       1101 |
++----------+-------------+--------------------+--------+----------+---------------+--------------+---------------+------------+
+1 row in set (0.00 sec)
+
+MariaDB [mahasiswa]> delete from biodata01
+    -> where NIM="11223346";
+Query OK, 1 row affected (0.09 sec)
+
+MariaDB [mahasiswa]> select * from biodata01;
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+| NIM      | NAMA          | ALAMAT             | KOTA     | KODE_POS | JENIS_KELAMIN | NO_HP        | TANGGAL_LAHIR | KODE_DOSEN |
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+| 11223344 | Ari Santoso   | Jl Kolonel Sugiono | Bekasi   |    17111 | Laki-Laki     | 089766545323 | 1979-08-31    |       1101 |
+| 11223345 | Ario Talib    | Jl Raya Cibarusah  | Cikarang |    17530 | Laki-Laki     | 087887677889 | 1999-11-16    |       1102 |
+| 11223347 | Lisa Ayu      | Jl Stasiun 01      | Bekasi   |    17111 | Perempuan     | 089887676545 | 1997-01-02    |       1104 |
+| 11223348 | Tiara Wahidah | Jl Bojong Koneng   | Bekasi   |    17111 | Perempuan     | 081789654777 | 1980-02-05    |       1105 |
+| 11223349 | Anton Sinaga  | Jl Tegal Gede      | Cikarang |    17560 | Laki-Laki     | 082345654555 | 1988-03-10    |       1106 |
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [mahasiswa]> select * from biodata01
+    -> where TANGGAL_LAHIR >="1996-01-02";
++----------+------------+-------------------+----------+----------+---------------+--------------+---------------+------------+
+| NIM      | NAMA       | ALAMAT            | KOTA     | KODE_POS | JENIS_KELAMIN | NO_HP        | TANGGAL_LAHIR | KODE_DOSEN |
++----------+------------+-------------------+----------+----------+---------------+--------------+---------------+------------+
+| 11223345 | Ario Talib | Jl Raya Cibarusah | Cikarang |    17530 | Laki-Laki     | 087887677889 | 1999-11-16    |       1102 |
+| 11223347 | Lisa Ayu   | Jl Stasiun 01     | Bekasi   |    17111 | Perempuan     | 089887676545 | 1997-01-02    |       1104 |
++----------+------------+-------------------+----------+----------+---------------+--------------+---------------+------------+
+2 rows in set (0.04 sec)
+
+MariaDB [mahasiswa]> select * from biodata01
+    -> where kota="Bekasi"
+    -> and JENIS_KELAMIN="Perempuan";
++----------+---------------+------------------+--------+----------+---------------+--------------+---------------+------------+
+| NIM      | NAMA          | ALAMAT           | KOTA   | KODE_POS | JENIS_KELAMIN | NO_HP        | TANGGAL_LAHIR | KODE_DOSEN |
++----------+---------------+------------------+--------+----------+---------------+--------------+---------------+------------+
+| 11223347 | Lisa Ayu      | Jl Stasiun 01    | Bekasi |    17111 | Perempuan     | 089887676545 | 1997-01-02    |       1104 |
+| 11223348 | Tiara Wahidah | Jl Bojong Koneng | Bekasi |    17111 | Perempuan     | 081789654777 | 1980-02-05    |       1105 |
++----------+---------------+------------------+--------+----------+---------------+--------------+---------------+------------+
+2 rows in set (0.00 sec)
+
+MariaDB [mahasiswa]> select * from biodata01
+    -> where KOTA="Bekasi" and JENIS_KELAMIN="Laki-Laki"
+    -> or TANGGAL_LAHIR <="1997" and JENIS_KELAMIN="Perempuan";
++----------+---------------+--------------------+--------+----------+---------------+--------------+---------------+------------+
+| NIM      | NAMA          | ALAMAT             | KOTA   | KODE_POS | JENIS_KELAMIN | NO_HP        | TANGGAL_LAHIR | KODE_DOSEN |
++----------+---------------+--------------------+--------+----------+---------------+--------------+---------------+------------+
+| 11223344 | Ari Santoso   | Jl Kolonel Sugiono | Bekasi |    17111 | Laki-Laki     | 089766545323 | 1979-08-31    |       1101 |
+| 11223348 | Tiara Wahidah | Jl Bojong Koneng   | Bekasi |    17111 | Perempuan     | 081789654777 | 1980-02-05    |       1105 |
++----------+---------------+--------------------+--------+----------+---------------+--------------+---------------+------------+
+2 rows in set (0.00 sec)
+
+MariaDB [mahasiswa]> select NAMA, ALAMAT from biodata01;
++---------------+--------------------+
+| NAMA          | ALAMAT             |
++---------------+--------------------+
+| Ari Santoso   | Jl Kolonel Sugiono |
+| Ario Talib    | Jl Raya Cibarusah  |
+| Lisa Ayu      | Jl Stasiun 01      |
+| Tiara Wahidah | Jl Bojong Koneng   |
+| Anton Sinaga  | Jl Tegal Gede      |
++---------------+--------------------+
+5 rows in set (0.00 sec)
+
+MariaDB [mahasiswa]> select * from biodata01
+    -> order by NAMA asc;
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+| NIM      | NAMA          | ALAMAT             | KOTA     | KODE_POS | JENIS_KELAMIN | NO_HP        | TANGGAL_LAHIR | KODE_DOSEN |
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+| 11223349 | Anton Sinaga  | Jl Tegal Gede      | Cikarang |    17560 | Laki-Laki     | 082345654555 | 1988-03-10    |       1106 |
+| 11223344 | Ari Santoso   | Jl Kolonel Sugiono | Bekasi   |    17111 | Laki-Laki     | 089766545323 | 1979-08-31    |       1101 |
+| 11223345 | Ario Talib    | Jl Raya Cibarusah  | Cikarang |    17530 | Laki-Laki     | 087887677889 | 1999-11-16    |       1102 |
+| 11223347 | Lisa Ayu      | Jl Stasiun 01      | Bekasi   |    17111 | Perempuan     | 089887676545 | 1997-01-02    |       1104 |
+| 11223348 | Tiara Wahidah | Jl Bojong Koneng   | Bekasi   |    17111 | Perempuan     | 081789654777 | 1980-02-05    |       1105 |
++----------+---------------+--------------------+----------+----------+---------------+--------------+---------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [mahasiswa]>
